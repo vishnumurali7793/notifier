@@ -1,0 +1,33 @@
+<html>
+
+<body>
+    <div class="input-group mb-3">
+        <label class="input-group" for="select-district">Select District</label>
+        <select class="custom-select" id="select-district">
+            <option selected>Choose...</option>
+            <option th:each="district : ${districts}" th:value="${district.id}" th:text="${district.districtName}">
+            </option>
+        </select>
+    </div>
+    </div>
+</body>
+<script>
+    $('#select-district').on('change', function() {
+        $.ajax({
+            type: 'GET',
+            url: '/notifier/findSlotByDistrictAndDateDayWise',
+            data: {
+                'district': this.value
+            },
+            beforeSend: () => {
+                $('#slot-container').html('<h6>Processing...</h6>');
+            },
+            success: (response) => {
+                $('#slot-container').html(response);
+            }
+        });
+    });
+
+</script>
+
+</html>

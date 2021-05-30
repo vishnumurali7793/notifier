@@ -1,0 +1,95 @@
+<html>
+
+<body>
+    <h4 class="text-center" th:unless="${#lists.isEmpty(slots)}">Todays Slot Details</h4>
+    <div th:if="${#lists.isEmpty(slots)}">
+        -No data available-
+    </div>
+    <div th:unless="${#lists.isEmpty(slots)}" th:each="slot: ${slots}"
+        class="card bg-default mb-3 shadow-sm mb-5 bg-white rounded" style="width: 100%;">
+        <div class="card-header font-weight-bold text-info" th:text="${slot.name} + ' On, ' + ${slot.date}"></div>
+        <div class="card-body">
+            <h5 class="card-title text-warning font-weight-bold" th:if="${slot.minimumAgeLimit == 45}"
+                th:text="'Age Limit ' + ${slot.minimumAgeLimit} + '+'">Test
+            </h5>
+            <h5 class="card-title text-danger font-weight-bold" th:unless="${slot.minimumAgeLimit == 45}"
+                th:text="'Age Limit ' + ${slot.minimumAgeLimit} + '+'"></h5>
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <h6 class="font-weight-bold">Address</h6>
+                </div>
+                <div class="col-md-8">
+                    <p class="card-text"
+                        th:text="${slot.address} + ', ' + ${slot.districtName} + ', ' + ${slot.stateName}"></p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <h6 class="font-weight-bold">Block Name</h6>
+                </div>
+                <div class="col-md-8">
+                    <p class="card-text" th:text="${slot.blockName}"></p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <h6 class="font-weight-bold">Timing</h6>
+                </div>
+                <div class="col-md-8">
+                    <p class="card-text" th:text="${slot.fromTime} + ' - ' + ${slot.toTime}"></p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <h6 class="font-weight-bold">Free or Paid</h6>
+                </div>
+                <div class="col-md-8">
+                    <p class="card-text" th:text="${slot.feeType}"></p>
+                </div>
+            </div>
+            <div class="row mt-3" th:if="${slot.feeType == 'Paid'}">
+                <div class="col-md-3">
+                    <h6 class="font-weight-bold">Price per Dose</h6>
+                </div>
+                <div class="col-md-8">
+                    <p class="card-text" th:text="${slot.fee}"></p>
+                </div>
+            </div>
+            <div class="row mt-3" th:unless="${slot.availableCapacityDose1 == 0}">
+                <div class="col-md-3">
+                    <h6 class="font-weight-bold">Dose 1 Available</h6>
+                </div>
+                <div class="col-md-8">
+                    <p class="card-text" th:text="${slot.availableCapacityDose1}"></p>
+                </div>
+            </div>
+            <div class="row mt-3" th:unless="${slot.availableCapacityDose1 == 0}">
+                <div class="col-md-3">
+                    <h6 class="font-weight-bold">Dose 2 Available</h6>
+                </div>
+                <div class="col-md-8">
+                    <p class="card-text" th:text="${slot.availableCapacityDose2}"></p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <h6 class="font-weight-bold">Vaccine</h6>
+                </div>
+                <div class="col-md-8">
+                    <p><span class="badge badge-pill badge-danger" th:text="${slot.vaccineName}"></span></p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <h6 class="font-weight-bold">Slots Available</h6>
+                </div>
+                <div class="col-md-8">
+                    <span class="card-text" th:unless="${#lists.isEmpty(slot.slots)}" th:each="s : ${slot.slots}"
+                        th:text="${s} + ', '"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

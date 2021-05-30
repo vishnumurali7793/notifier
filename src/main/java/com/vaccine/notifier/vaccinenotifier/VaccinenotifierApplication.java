@@ -16,11 +16,13 @@ public class VaccinenotifierApplication {
 		SpringApplication.run(VaccinenotifierApplication.class, args);
 	}
 
+	// RestTemplate object
 	@Bean
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
 
+	//Gson object
 	@Bean
 	public Gson getGson() {
 		return new Gson();
