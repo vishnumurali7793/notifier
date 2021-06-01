@@ -17,7 +17,8 @@
             type: 'GET',
             url: '/notifier/findSlotByDistrictAndDateDayWise',
             data: {
-                'district': this.value
+                'district': this.value,
+                'date': $('#datepicker').val()
             },
             beforeSend: () => {
                 $('#slot-container').html('<h6>Processing...</h6>');

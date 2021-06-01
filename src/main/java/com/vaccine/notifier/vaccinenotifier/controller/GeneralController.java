@@ -80,8 +80,8 @@ public class GeneralController {
     }
 
     @RequestMapping("/findSlotByDistrictAndDateDayWise")
-    public ModelAndView getCenterResposeByDistrictAndDateDayWise(@RequestParam Integer district) {
-        String today = simpleDateFormat.format(new Date());
+    public ModelAndView getCenterResposeByDistrictAndDateDayWise(@RequestParam Integer district, @RequestParam String date) {
+        String today = !date.equals("") ? date : simpleDateFormat.format(new Date());
         ModelAndView modelAndView = new ModelAndView();
 
         // SETTING HTTP HEADERS

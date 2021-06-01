@@ -13,7 +13,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="col-md-4 col-sm-12 col-xs-12">
                                 <div class="input-group mb-3">
                                     <label class="input-group" for="select-state">Select State</label>
                                     <select class="custom-select" id="select-state">
@@ -23,10 +23,19 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <div class="input-group mb-3">
+                                    <label class="input-group" for="datepicker">Select Date</label>
+                                    <div style="width: 100%;">
+                                        <input type="text" id="datepicker" placeholder="Select Date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12">
                                 <div class="input-group mb-3" id="district-pre-container">
                                     <label class="input-group" for="select-district-dummy">Select District</label>
-                                    <div id="select-district-dummy" class="text-primary">-- Please Select State first --</div>
+                                    <div id="select-district-dummy" class="text-primary">-- Please Select State first --
+                                    </div>
                                 </div>
                                 <div id="district-container"></div>
                             </div>
@@ -60,6 +69,17 @@
             }
         });
     })
+
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4',
+        //modal: true
+        //width: 312
+        format: 'dd-mm-yyyy',
+        header: true,
+        footer: false,
+        iconsLibrary: 'fontawesome',
+        showRightIcon: true,
+    });
 </script>
 
 </html>

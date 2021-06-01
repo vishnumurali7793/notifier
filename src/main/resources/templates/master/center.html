@@ -63,12 +63,20 @@
                     <p class="card-text" th:text="${slot.availableCapacityDose1}"></p>
                 </div>
             </div>
-            <div class="row mt-3" th:unless="${slot.availableCapacityDose1 == 0}">
+            <div class="row mt-3" th:unless="${slot.availableCapacityDose2 == 0}">
                 <div class="col-md-3">
                     <h6 class="font-weight-bold">Dose 2 Available</h6>
                 </div>
                 <div class="col-md-8">
                     <p class="card-text" th:text="${slot.availableCapacityDose2}"></p>
+                </div>
+            </div>
+            <div class="row mt-3" th:unless="${slot.availableCapacity == 0}">
+                <div class="col-md-3">
+                    <h6 class="font-weight-bold">Available Capacity</h6>
+                </div>
+                <div class="col-md-8">
+                    <p class="card-text" th:text="${slot.availableCapacity}"></p>
                 </div>
             </div>
             <div class="row mt-3">
