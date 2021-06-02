@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import com.vaccine.notifier.vaccinenotifier.entities.CenterResponse;
 import com.vaccine.notifier.vaccinenotifier.entities.SessionResponse;
+import com.vaccine.notifier.vaccinenotifier.service.EmailService;
 import com.vaccine.notifier.vaccinenotifier.service.SessionService;
 
 import org.slf4j.Logger;
@@ -23,6 +24,9 @@ public class ScheduledTasks {
     
     @Autowired
     SessionService sessionService;
+
+    @Autowired
+    EmailService emailService;
 
     @Value("${scheduler.districtId}")
     private Integer districtId;
@@ -62,6 +66,7 @@ public class ScheduledTasks {
 
     @Scheduled(cron = "${scheduler.cronJob.day}")
     public void schedulerForDailySlotCheck() {
+        logger.info("Scheduler has been started for fetching slot details");
         // SETTING HTTP HEADERS
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -74,6 +79,7 @@ public class ScheduledTasks {
 
         if (sessionResponse != null) {
             logger.info("RESPONSE GOT FROM API (DAILY): AVAILABLE CENTERS - " + sessionResponse.getSessions().size());
+            emailService.sendMail("XXXXXXXXXXXXX", "Email Service Test", "Test");
         } else {
             logger.error("THERE IS AN ISSUE WITH THE CONNECTION (DAILY)");
         }

@@ -33,9 +33,12 @@
                             </div>
                             <div class="col-md-4 col-sm-12 col-xs-12">
                                 <div class="input-group mb-3" id="district-pre-container">
-                                    <label class="input-group" for="select-district-dummy">Select District</label>
-                                    <div id="select-district-dummy" class="text-primary">-- Please Select State first --
-                                    </div>
+                                    <label class="input-group" for="select-state">Select District</label>
+                                    <select class="custom-select" id="select-state" disabled>
+                                        <option selected>Choose...</option>
+                                        <option th:each="state : ${states}" th:value="${state.id}"
+                                            th:text="${state.stateName}">One</option>
+                                    </select>
                                 </div>
                                 <div id="district-container"></div>
                             </div>
@@ -50,7 +53,7 @@
             </div>
         </div>
     </div>
-    <!-- <div th:insert="/fragments/footer :: footer"></div> -->
+    <div th:insert="/fragments/footer :: footer"></div>
 </body>
 <script>
     $('#select-state').on('change', function () {
